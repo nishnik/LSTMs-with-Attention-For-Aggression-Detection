@@ -204,10 +204,10 @@ def evaluate(model, test_data, test_y, loss_function, name ='dev'):
     avg_loss = 0.0
     truth_res = []
     pred_res = []
-    model.hidden = model.init_hidden()
     for sent, label in zip(test_data, test_y):
         truth_res.append(label)
         # detaching it from its history on the last instance.
+        model.hidden = model.init_hidden()
         tmp = [all_words.index(w) for w in sent.split(' ')]
         if len(tmp) == 0:
             pred_res.append(pred_res[0])
